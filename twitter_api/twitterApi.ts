@@ -13,7 +13,7 @@ const twitter = axios.create({
 
 async function getFollowersList(screen_name: string, cursor: string) {
   //console.log('TOKEN ===', process.env.TWITTER_API_BEARER_TOKEN)
-  const uri: string = `1.1/followers/ids.json?cursor=-1&screen_name=${screen_name}&count=10&stringify_ids=true`
+  const uri: string = `1.1/followers/ids.json?cursor=${cursor}&screen_name=${screen_name}&count=10&stringify_ids=true`
   return await twitter.get(uri)
 }
 
