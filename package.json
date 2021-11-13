@@ -1,0 +1,15 @@
+{
+  "name": "TwitterPolitica",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "repository": "https://github.com/atormakh/TwitterPolitica",
+  "author": "atormakh@itba.edu.ar",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "4.4.4"
+  },
+  "dependencies": {
+    "axios": "^0.24.0",
+    "dotenv": "^10.0.0"
+  }
+}
