@@ -5,11 +5,15 @@
   "repository": "https://github.com/atormakh/TwitterPolitica",
   "author": "atormakh@itba.edu.ar",
   "license": "MIT",
+  "scripts":{
+    "dev": "npx ts-node index.ts"
+  },
   "devDependencies": {
     "typescript": "4.4.4"
   },
   "dependencies": {
     "axios": "^0.24.0",
-    "dotenv": "^10.0.0"
+    "dotenv": "^10.0.0",
+    "mongodb": "^4.1.4"
   }
 }
