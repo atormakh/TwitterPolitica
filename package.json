@@ -5,7 +5,7 @@
   "repository": "https://github.com/atormakh/TwitterPolitica",
   "author": "atormakh@itba.edu.ar",
   "license": "MIT",
-  "scripts":{
+  "scripts": {
     "dev": "npx ts-node index.ts"
   },
   "devDependencies": {
@@ -14,6 +14,7 @@
   "dependencies": {
     "axios": "^0.24.0",
     "dotenv": "^10.0.0",
-    "mongodb": "^4.1.4"
+    "mongodb": "^4.1.4",
+    "winston": "^3.3.3"
   }
 }
