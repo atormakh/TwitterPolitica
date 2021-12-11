@@ -1,6 +1,9 @@
 import { logger } from './logger'
 import {  addMultipleFollowers, connectMongoDB, disconnectMongoDB } from './mongodb'
 import { getFollowersList } from './twitter_api/twitterApi'
+import * as dotenv from 'dotenv'
+
+dotenv.config()
 
 function sleep(millis: any) {
   return new Promise((resolve) => setTimeout(resolve, millis))
