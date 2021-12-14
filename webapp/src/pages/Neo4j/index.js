@@ -1,154 +1,20 @@
 
-import { useEffect } from "react"
-import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react"
+//import { useLocation } from "react-router-dom";
 import * as NeoVis from "neovis.js"
-//import * as neo4j from "neo4j-driver"
-// import * as d3 from "d3";
-// const uri = "neo4j://localhost:7687"
-// const driver = neo4j.driver(uri)
-// const session = driver.session()
+import { IconButton,Select, MenuItem, TextField, Table, TableHead, TableCell, TableRow, TableBody, CircularProgress, Collapse } from "@mui/material"
+import ExpandLess from '@mui/icons-material/ExpandLess';
+import ExpandMore from '@mui/icons-material/ExpandMore';
+import * as neo4j from "neo4j-driver"
+import "./index.scss"
+const uri = "neo4j://localhost:7687"
+const driver = neo4j.driver(uri)
+const session = driver.session()
 
-// function ForceGraph({
-//     nodes, // an iterable of node objects (typically [{id}, …])
-//     links // an iterable of link objects (typically [{source, target}, …])
-//   }, {
-//     nodeId = d => d.id, // given d in nodes, returns a unique identifier (string)
-//     nodeGroup, // given d in nodes, returns an (ordinal) value for color
-//     nodeGroups, // an array of ordinal values representing the node groups
-//     nodeTitle, // given d in nodes, a title string
-//     nodeFill = "currentColor", // node stroke fill (if not using a group color encoding)
-//     nodeStroke = "#fff", // node stroke color
-//     nodeStrokeWidth = 1.5, // node stroke width, in pixels
-//     nodeStrokeOpacity = 1, // node stroke opacity
-//     nodeRadius = 5, // node radius, in pixels
-//     nodeStrength,
-//     linkSource = ({source}) => source, // given d in links, returns a node identifier string
-//     linkTarget = ({target}) => target, // given d in links, returns a node identifier string
-//     linkStroke = "#999", // link stroke color
-//     linkStrokeOpacity = 0.6, // link stroke opacity
-//     linkStrokeWidth = 1.5, // given d in links, returns a stroke width in pixels
-//     linkStrokeLinecap = "round", // link stroke linecap
-//     linkStrength,
-//     colors = d3.schemeTableau10, // an array of color strings, for the node groups
-//     width = 640, // outer width, in pixels
-//     height = 400, // outer height, in pixels
-//     invalidation // when this promise resolves, stop the simulation
-//   } = {}) {
-//     // Compute values.
-//     const N = d3.map(nodes, nodeId).map(intern);
-//     const LS = d3.map(links, linkSource).map(intern);
-//     const LT = d3.map(links, linkTarget).map(intern);
-//     if (nodeTitle === undefined) nodeTitle = (_, i) => N[i];
-//     const T = nodeTitle == null ? null : d3.map(nodes, nodeTitle);
-//     const G = nodeGroup == null ? null : d3.map(nodes, nodeGroup).map(intern);
-//     const W = typeof linkStrokeWidth !== "function" ? null : d3.map(links, linkStrokeWidth);
-
-//     // Replace the input nodes and links with mutable objects for the simulation.
-//     nodes = d3.map(nodes, (_, i) => ({id: N[i]}));
-//     links = d3.map(links, (_, i) => ({source: LS[i], target: LT[i]}));
-
-//     // Compute default domains.
-//     if (G && nodeGroups === undefined) nodeGroups = d3.sort(G);
-
-//     // Construct the scales.
-//     const color = nodeGroup == null ? null : d3.scaleOrdinal(nodeGroups, colors);
-
-//     // Construct the forces.
-//     const forceNode = d3.forceManyBody();
-//     const forceLink = d3.forceLink(links).id(({index: i}) => N[i]);
-//     if (nodeStrength !== undefined) forceNode.strength(nodeStrength);
-//     if (linkStrength !== undefined) forceLink.strength(linkStrength);
-
-//     const simulation = d3.forceSimulation(nodes)
-//         .force("link", forceLink)
-//         .force("charge", forceNode)
-//         .force("center",  d3.forceCenter())
-//         .on("tick", ticked);
-
-//     const svg = d3.create("svg")
-//         .attr("width", width)
-//         .attr("height", height)
-//         .attr("viewBox", [-width / 2, -height / 2, width, height])
-//         .attr("style", "max-width: 100%; height: auto; height: intrinsic;");
-
-//     const link = svg.append("g")
-//         .attr("stroke", linkStroke)
-//         .attr("stroke-opacity", linkStrokeOpacity)
-//         .attr("stroke-width", typeof linkStrokeWidth !== "function" ? linkStrokeWidth : null)
-//         .attr("stroke-linecap", linkStrokeLinecap)
-//       .selectAll("line")
-//       .data(links)
-//       .join("line");
-
-//     const node = svg.append("g")
-//         .attr("fill", nodeFill)
-//         .attr("stroke", nodeStroke)
-//         .attr("stroke-opacity", nodeStrokeOpacity)
-//         .attr("stroke-width", nodeStrokeWidth)
-//       .selectAll("circle")
-//       .data(nodes)
-//       .join("circle")
-//         .attr("r", nodeRadius)
-//         .call(drag(simulation));
-
-//     if (W) link.attr("stroke-width", ({index: i}) => W[i]);
-//     if (G) node.attr("fill", ({index: i}) => color(G[i]));
-//     if (T) node.append("title").text(({index: i}) => T[i]);
-//     if (invalidation != null) invalidation.then(() => simulation.stop());
-
-//     function intern(value) {
-//       return value !== null && typeof value === "object" ? value.valueOf() : value;
-//     }
-
-//     function ticked() {
-//       link
-//         .attr("x1", d => d.source.x)
-//         .attr("y1", d => d.source.y)
-//         .attr("x2", d => d.target.x)
-//         .attr("y2", d => d.target.y);
-
-//       node
-//         .attr("cx", d => d.x)
-//         .attr("cy", d => d.y);
-//     }
-
-//     function drag(simulation) {    
-//       function dragstarted(event) {
-//         if (!event.active) simulation.alphaTarget(0.3).restart();
-//         event.subject.fx = event.subject.x;
-//         event.subject.fy = event.subject.y;
-//       }
-
-//       function dragged(event) {
-//         event.subject.fx = event.x;
-//         event.subject.fy = event.y;
-//       }
-
-//       function dragended(event) {
-//         if (!event.active) simulation.alphaTarget(0);
-//         event.subject.fx = null;
-//         event.subject.fy = null;
-//       }
-
-//       return d3.drag()
-//         .on("start", dragstarted)
-//         .on("drag", dragged)
-//         .on("end", dragended);
-//     }
-
-//     return Object.assign(svg.node(), {scales: {color}});
-//   }
-
-// const chart = ForceGraph(miserables, {
-//     nodeId: d => d.id,
-//     nodeGroup: d => d.group,
-//     nodeTitle: d => `${d.id}\n${d.group}`,
-//     linkStrokeWidth: l => Math.sqrt(l.value),
-//     width,
-//     height: 600,
-//     invalidation // a promise to stop the simulation when the cell is re-run
-//   })
-
+const avgQuery = "match(n:User) with n, size((n)--()) as relCount return avg(relCount)";
+const interQuery = (c1, c2, min, max) => `match(c1:Candidate{screen_name:"${c1}"}) <-[r1]-(u:User)-[r2]->(c2:Candidate{screen_name:"${c2}"}) where u.follows>=${min} and u.follows<=${max} return c1,c2,u,r1,r2 limit 50`
+const tableQuery = "match(c1:Candidate)<-[]-(u:User)-[]->(c2:Candidate) where c1.screen_name < c2.screen_name with c1,c2, count(u) as q return c1.screen_name, c2.screen_name,q"
+const candidates = ["mariuvidal", "jlespert", "NicolasdelCano", "JMilei", "diegosantilli", "RandazzoF", "SantoroLeandro", "myriambregman", "vtolosapaz", "CynthiaHotton"]
 
 function drawGraph(query) {
     var config = {
@@ -159,20 +25,22 @@ function drawGraph(query) {
         labels: {
             "User": {
                 "size": "size",
-                "title_properties":[],
-                "caption":"id",
-                "font":{
-                    "size":8
-                }
+                "title_properties": ["follows"],
+                "caption": "id",
+                "font": {
+                    "size": 8
+                },
+                "community": "follows"
 
             },
             "Candidate": {
 
                 "caption": "screen_name",
                 "size": "size",
-                "font":{
-                    "size":12,
-                }
+                "font": {
+                    "size": 12,
+                },
+                "color": "red"
 
             }
         },
@@ -182,7 +50,7 @@ function drawGraph(query) {
                 "caption": false,
             },
         },
-        "hierarchical":false,
+        "hierarchical": false,
         initial_cypher: query
     };
 
@@ -192,21 +60,124 @@ function drawGraph(query) {
 
 
 export default function Neo4j() {
-    const location = useLocation();
+    //const location = useLocation();
+    const [avg, setAvg] = useState(0);
+    const [candidate1, setCandidate1] = useState(candidates[0]);
+    const [candidate2, setCandidate2] = useState(candidates[1]);
+    const [min, setMin] = useState(2);
+    const [max, setMax] = useState(10);
+    const [table, setTable] = useState(undefined);
+    const [open, setOpen] = useState(true);
+    const load = async () => {
+        let r = await session.writeTransaction(tx => tx.run(avgQuery));
+        let avg = parseFloat(r.records[0]._fields[0])
+        setAvg(avg.toFixed(2))
+        r = await session.writeTransaction(tx => tx.run(tableQuery));
+        setTable(r.records.map(r => { return { c1: r._fields[0], c2: r._fields[1], q: Number(r._fields[2]) } }).sort((c1, c2) => { return c2.q - c1.q }))
+    }
+    useEffect(() => {
+        load();
+
+    }, [])
+    // useEffect(() => {
+
+    //     let params = new URLSearchParams(location.search)
+    //     drawGraph(params.get("q"));
+
+    // }, [location])
 
     useEffect(() => {
-        //let result = await session.writeTransaction(tx => tx.run("match(u:User)-[r]->(c:Candidate) return u,c,r limit 25"))
-        //console.log(result)
-        let params = new URLSearchParams(location.search)
-        drawGraph(params.get("q"));
+        drawGraph(interQuery(candidate1, candidate2, min, max));
+    }, [candidate1, candidate2, min, max])
 
-    }, [location])
-
+    useEffect(() => {
+        console.log(table)
+    }, [table])
 
     return (
-        <div id="viz" style={{ height: 1000 }}>
+        <div>
+            <h3>El promedio de candidatos seguidos por los usuarios es {avg}</h3>
+            <div class="collapsible" className="tableSection">
+                <IconButton onClick={()=>{setOpen(!open)}}>
+                {open ? <ExpandLess /> : <ExpandMore />}
+                </IconButton>
+                <Collapse in={open}>
+                    {table ? <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>Candidato 1</TableCell>
+                                <TableCell>Candidato 2</TableCell>
+                                <TableCell>Intersección</TableCell>
 
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {table.map((row, index) => (
+                                <TableRow
+                                    key={index}
+                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                >
+                                    <TableCell>{row.c1}</TableCell>
+                                    <TableCell>{row.c2}</TableCell>
+                                    <TableCell>{row.q}</TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table> : <CircularProgress />}
+                </Collapse>
+            </div>
+            <div className="interSection">
+                <Select
+                    id="candidate1Select"
+                    value={candidate1}
+                    onChange={v => setCandidate1(v.target.value)}
+                >
+
+                    {candidates.map(candidate => {
+                        return (
+                            <MenuItem key={candidate} value={candidate}>{candidate}</MenuItem>
+                        )
+                    })}
+
+                </Select>
+                <Select
+                    id="candidate2Select"
+                    value={candidate2}
+                    onChange={v => setCandidate2(v.target.value)}
+                >
+
+                    {candidates.map(candidate => {
+                        return (
+                            <MenuItem key={candidate} value={candidate}>{candidate}</MenuItem>
+                        )
+                    })}
+
+                </Select>
+                <TextField
+                    id="min-number"
+                    label="min"
+                    type="number"
+                    value={min}
+                    className="number-input"
+                    inputProps={{
+                        "min": 2
+                    }}
+                    onChange={(v) => { setMin(v.target.value) }} />
+                <TextField
+                    id="max-number"
+                    label="max"
+                    type="number"
+                    value={max}
+                    className="number-input"
+                    inputProps={{
+                        "min": parseInt(min) + 1,
+                        "max": candidates.length
+                    }}
+                    onChange={(v) => { setMax(v.target.value) }} />
+            </div>
+            <div id="viz" style={{ height: "70vh" }} />
         </div>
     )
 }
+
 
