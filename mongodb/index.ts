@@ -6,6 +6,7 @@ const dbName = "twitter";
 enum Collections {
   FOLLOWERS = "followers",
   TWEETS = "tweets",
+  FOLLOWINGS = "followings"
 }
 async function connectMongoDB() {
   await client.connect();
@@ -42,9 +43,18 @@ async function addMultipleTweets(twitAuthor: string, tweets: any[]) {
   }
 }
 
+async function addMultipleFollowings(follower: any, followings: string[]) {
+  if (!follower) {console.log("MONGODB FOLLOWER IS UNDEFINED"); return;}
+  await client
+    .db(dbName)
+    .collection(Collections.FOLLOWINGS)
+    .insertMany(followings.map(following => ({ follower: follower, following: following })))
+}
+
 export {
   connectMongoDB,
   disconnectMongoDB,
   addMultipleFollowers,
   addMultipleTweets,
+  addMultipleFollowings
 };
