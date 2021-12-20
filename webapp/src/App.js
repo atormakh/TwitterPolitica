@@ -6,8 +6,8 @@ import Home from "./pages/Home";
 import Common from "./pages/common"
 import Shared from "./pages/Shared"
 import Words from "./pages/words"
-import Redis from "./pages/Redis"
-import ElasticSearch from "./pages/ElasticSearch";
+import Engagement from "./pages/Engagement"
+
 import './App.css';
 
 const drawerWidth = 240;
@@ -16,6 +16,7 @@ const sections = [
 {title:"Shared followers",href:"/shared", element:<Shared/>},
 {title:"Follower intersection",href:"/common", element:<Common/>},
 {title:"Words",href:"/words",element:<Words/>},
+{title:"Engagement",href:"/engagement",element:<Engagement/>},
 // {title:"ElasticSearch",href:"/elasticsearch"},
 // {title:"MongoDB",href:"/mongoDB"},
 ]

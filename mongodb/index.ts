@@ -1,4 +1,5 @@
 import { MongoClient } from "mongodb";
+import { mongoQuery } from "./engagementQuery";
 
 const url = "mongodb://localhost:27017";
 const client = new MongoClient(url);
@@ -50,6 +51,12 @@ async function addMultipleFollowings(follower: any, followings: string[]) {
     .collection(Collections.FOLLOWINGS)
     .insertMany(followings.map(following => ({ follower: follower, following: following })))
 }
+
+export async function getEngagementAggregation(){
+  return await client
+  .db(dbName)
+  .collection(Collections.TWEETS).aggregate(mongoQuery)
+} 
 
 export {
   connectMongoDB,
