@@ -1,0 +1,3 @@
+docker run --name twitter-neo -p7474:7474 -p7687:7687 -d --env NEO4J_AUTH=none agustinjerusalinsky/twitter-neo4j:latest
+docker run --name twitter-mongo -p27017:27017 -d agustinjerusalinsky/twitter-mongo:latest
+docker run --name twitter-elastic -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" -d agustinjerusalinsky/twitter-elastic
