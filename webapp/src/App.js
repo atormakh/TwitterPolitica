@@ -3,18 +3,22 @@ import { Toolbar, Box } from "@mui/material";
 import { TwitterAppBar } from "./components/TwitterAppBar/TwitterAppBar";
 import { TwitterDrawer } from "./components/TwitterDrawer/TwitterDrawer";
 import Home from "./pages/Home";
-import Neo4j from "./pages/Neo4j"
-import MongoDB from "./pages/MongoDB"
+import Common from "./pages/common"
+import Shared from "./pages/Shared"
+import Words from "./pages/words"
 import Redis from "./pages/Redis"
 import ElasticSearch from "./pages/ElasticSearch";
 import './App.css';
 
 const drawerWidth = 240;
-const sections = [{title:"Home", href:"/"},
-{title:"Neo4j",href:"/neo4j"},
-{title:"Redis",href:"/redis"},
-{title:"ElasticSearch",href:"/elasticsearch"},
-{title:"MongoDB",href:"/mongoDB"},]
+const sections = [
+{title:"Home", href:"/"},
+{title:"Shared followers",href:"/shared", element:<Shared/>},
+{title:"Follower intersection",href:"/common", element:<Common/>},
+{title:"Words",href:"/words",element:<Words/>},
+// {title:"ElasticSearch",href:"/elasticsearch"},
+// {title:"MongoDB",href:"/mongoDB"},
+]
 
 function App() {
 
@@ -32,11 +36,7 @@ function App() {
             <Toolbar />
 
             <Routes>
-              <Route exact path="/" element={Home()} />
-              <Route path="/neo4j" element={<Neo4j/>} />
-              <Route path="/mongoDB" element={MongoDB()} />
-              <Route path="/redis" element={Redis()} />
-              <Route path="/elasticsearch" element={ElasticSearch()} />
+              {sections.map((section,index) => <Route key={index} path={section.href} element={section.element} />)}
             </Routes>
 
           </Box>
