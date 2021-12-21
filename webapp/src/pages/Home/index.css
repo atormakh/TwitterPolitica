@@ -1,3 +1,23 @@
-.home-section .h2 {
-  color: #333;
+.home-section h3,
+.home-section h4,
+.home-section h2 {
+  color: #444;
+}
+
+.home-section li,
+.home-section p {
+  color: #666;
+  line-height: 1.3;
+}
+
+.home-section hr {
+  background-color: #999;
+}
+
+.home-section .document-row {
+  margin-inline: 12px;
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
