@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  neo:
+    image: agustinjerusalinsky/twitter-neo4j:latest
+    container_name: t-neo
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    environment:
+      NEO4J_AUTH: none
+  
+  elastic:
+    image: agustinjerusalinsky/twitter-elastic:latest
+    container_name: t-elastic
+    ports:
+      - "9200:9200"
+    environment:
+      - discovery.type=single-node
+  
+  mongo:
+    image: agustinjerusalinsky/twitter-mongo:latest
+    container_name: t-mongo
+    ports:
+      - "27017:27017"
