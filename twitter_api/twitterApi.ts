@@ -2,10 +2,7 @@ import axios from "axios";
 
 //ponerle de dafault url "https://api.twitter.com/"
 //agregarle por default el Bearer Token de twitter developer
-const tokenAGUSTORMAKH =
-  "AAAAAAAAAAAAAAAAAAAAAJFQVQEAAAAAjTIQW8oHDX4fVz2qdf9n%2FFlB0DI%3DhExDAb6LlqGZpR55801JJZXevj4UWxc9c8Qgg3g2SIMCk4rK2d";
-const tokenATORMAKH =
-  "AAAAAAAAAAAAAAAAAAAAABktVwEAAAAAL%2BQ2G9A0YAxOmUp7VZjAJDnp464%3DkbDT2rRRWXTFQKlIAOC2eNFAEEWXedpMxAtOCzHzY3x64BUTQ8";
+
 const twitter = axios.create({
   baseURL: "https://api.twitter.com/",
   headers: {

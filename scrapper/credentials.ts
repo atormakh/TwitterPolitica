@@ -1,11 +1,5 @@
-export const credentials:any = {
-    "bearer":"AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
-    "auth":"78c7c47d25754728e2298006862eea6149e5732e",
-    "csrf":"bf5e25a380beae8248d9bfde468149fa603ca213ddc1eb912eae16a6cc009a911524c83869142a5ab12d87cfe68ad0d2cc80a9cd93f18d57da94d39863ec57632d24504febdeaf714e1b39bd6665d1a1"
-}
-
-// export const credentials:any = {
-//     "bearer": "AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
-//     "auth": "d2c75c25cf1244f482f6d286afa028c5f87564f3",
-//     "csrf": "62e02158cd2eff7d6606589bf69d1573cddc0977bf42a3ced8960b8864f53c7079c864dd7efa4a2423f8966b8a9358174e8524206240c32bcd0ce2ce57d942d7034c554caf9baab7aac0ef20e238f12a"
-// }
+export const credentials: any = {
+  bearer: "complete-this-with-your-bearer",
+  auth: "complete-this-with-your-auth",
+  csrf: "complete-this-with-your-csrf",
+};
