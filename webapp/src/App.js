@@ -12,12 +12,12 @@ import "./App.css";
 
 const drawerWidth = 240;
 const sections = [
-  { title: "Home", href: "/", element: <Home /> },
-  { title: "Shared followers", href: "/shared", element: <Shared /> },
-  { title: "Follower intersection", href: "/common", element: <Common /> },
-  { title: "Words", href: "/words", element: <Words /> },
-  { title: "Engagement", href: "/engagement", element: <Engagement /> },
-  // {title:"ElasticSearch",href:"/elasticsearch"},
+  { title: "Resumen", href: "/", element: <Home /> },
+  { title: "Seguidos en común", href: "/shared", element: <Shared /> },
+  { title: "Intersección de seguidores", href: "/common", element: <Common /> },
+  { title: "Palabras frecuentes", href: "/words", element: <Words /> },
+  { title: "Interacciones", href: "/engagement", element: <Engagement /> },
+  // {title:"ElasticSearcsh",href:"/elasticsearch"},
   // {title:"MongoDB",href:"/mongoDB"},
 ];
 
