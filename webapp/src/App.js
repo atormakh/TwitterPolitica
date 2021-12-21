@@ -3,42 +3,46 @@ import { Toolbar, Box } from "@mui/material";
 import { TwitterAppBar } from "./components/TwitterAppBar/TwitterAppBar";
 import { TwitterDrawer } from "./components/TwitterDrawer/TwitterDrawer";
 import Home from "./pages/Home";
-import Common from "./pages/common"
-import Shared from "./pages/Shared"
-import Words from "./pages/words"
-import Redis from "./pages/Redis"
+import Common from "./pages/common";
+import Shared from "./pages/Shared";
+import Words from "./pages/words";
+import Redis from "./pages/Redis";
 import ElasticSearch from "./pages/ElasticSearch";
-import './App.css';
+import "./App.css";
 
 const drawerWidth = 240;
 const sections = [
-{title:"Home", href:"/"},
-{title:"Shared followers",href:"/shared", element:<Shared/>},
-{title:"Follower intersection",href:"/common", element:<Common/>},
-{title:"Words",href:"/words",element:<Words/>},
-// {title:"ElasticSearch",href:"/elasticsearch"},
-// {title:"MongoDB",href:"/mongoDB"},
-]
+  { title: "Home", href: "/", element: <Home /> },
+  { title: "Shared followers", href: "/shared", element: <Shared /> },
+  { title: "Follower intersection", href: "/common", element: <Common /> },
+  { title: "Words", href: "/words", element: <Words /> },
+  // {title:"ElasticSearch",href:"/elasticsearch"},
+  // {title:"MongoDB",href:"/mongoDB"},
+];
 
 function App() {
-
   return (
     <div className="App">
       <Router basename="">
-        <Box sx={{ display: 'flex' }}>
+        <Box sx={{ display: "flex" }}>
           <TwitterAppBar drawerWidth={drawerWidth} />
           <TwitterDrawer drawerWidth={drawerWidth} sections={sections} />
 
           <Box
             component="main"
-            sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}
+            sx={{ flexGrow: 1, bgcolor: "background.default", p: 3 }}
           >
             <Toolbar />
 
             <Routes>
-              {sections.map((section,index) => <Route key={index} path={section.href} element={section.element} />)}
+              {sections.map((section, index) => (
+                <Route
+                  key={index}
+                  path={section.href}
+                  element={section.element}
+                />
+              ))}
             </Routes>
-
           </Box>
         </Box>
       </Router>
