@@ -9,6 +9,14 @@ We had to do a project **Data Bases II** involving **polyglot persitance**. For 
 
 Besides we saw a very rare phenomenon where a candidates Twitter following and interactions seemed resonate a lot around the youth.
 
+## Databases
+For these tasks we chose to use a selection of database engines intending to take advantage of their strengths to solve problems of different nature.
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Neo4j-logo_color.png/250px-Neo4j-logo_color.png" alt="Neo4j" style="height:4em;"/>
+<img src="https://upload.wikimedia.org/wikipedia/commons/0/00/Mongodb.png" alt="MongoDB" style="height:4em;"/>
+<img src="https://www.consulthink.it/wp-content/uploads/2019/12/elasticsearch-logo.png" alt="ElasticSearch" style="height:5em;"/>
+
+
 
 Installation
 ---
