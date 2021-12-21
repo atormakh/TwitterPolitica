@@ -1,9 +1,9 @@
 Twitter Politica
 ===
-
-## Table of Contents
-
-[TOC]
+### Contributors
+Agustin Jerusalinsky
+Agustin Tormakh
+Camila Borinsky
 
 ## Idea
 
