@@ -30,9 +30,16 @@ There are 3 main modules, docker, API and webapp. To start the project, all 3 co
 ```
 
 ### Docker
-Docker is the module were all databases are stored, each one runs on a docker container.
+Docker is the module were all databases are stored, each one runs on a docker container. Before starting this section make sure you have [docker](https://docs.docker.com/get-docker/) and [docker-compose](https://docs.docker.com/compose/install/) installed on your computer. You can check this by running the following commands on your command line interpreter or terminal.
+```
+docker --version
+docker-compose --version
+```
 
-`cd docker`
+Before starting, from the root directory of the project, run the following command:
+```
+cd docker
+```
 
 From the docker directory run the following command
 
@@ -41,8 +48,12 @@ From the docker directory run the following command
 This will instantiate and run all required docker containers
 
 ### API
-The API is used when CORS is not an available setting inside the database container (MongoDB)
-From the root directory run the following commands
+The API is used when CORS is not an available setting inside the database container (MongoDB). Before starting this section make sure you already have installed [yarn](https://classic.yarnpkg.com/en/docs/install) on your computer.
+ You can check this by running the following commands on your command line interpreter or terminal.
+```
+yarn --version
+```
+From the root directory run the following commands.
 ```
 yarn
 yarn start
@@ -52,7 +63,7 @@ This will listen in port 8000 for http requests
 
 ### Webapp
 
-Webapp is a different npm module, and runs over ReactJS
+Webapp is a different npm module, and runs over ReactJS. As well as in the API section, make sure you have [yarn](https://classic.yarnpkg.com/en/docs/install) properly installed on your computer.
 
 ```
 cd webapp
